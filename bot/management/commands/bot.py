@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 def request_device(devname, what, page):
 	response = ''
 	count = 0
-	all_prs = requests.get('https://helpix.ru/cgi/tgbot/tg.pl?devname={}&what={}&page={}'.format(devname, what, page), auth = ('tgbot', 'mQYtIW_cc2w'))
+	all_prs = requests.get('https://helpix.ru/cgi/tgbot/tg.pl?devname={}&what={}&page={}'.format(devname, what, page), auth = ('LOGIN', 'PASSWORD'))
 	tree = ET.fromstring(all_prs.text)
 	if what == 'getspecs':
 		for child in tree:
@@ -43,7 +43,7 @@ class Command(BaseCommand):
 	help = 'Телеграм-бот'
 
 	def handle(self, *args, **options):
-		bot = telebot.TeleBot('1731097238:AAEoCdAjqNqI4enBpGAgWPjeL51Oxn5VGzY')
+		bot = telebot.TeleBot('TOKEN')
 
 		@bot.message_handler(commands=['start'])
 		def start_message(message):
